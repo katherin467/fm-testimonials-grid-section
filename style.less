@@ -1,0 +1,190 @@
+/* Colors */
+@Purple_50: hsl(260, 100%, 95%);
+@Purple_300: hsl(264, 82%, 80%);
+@Purple_500: hsl(263, 55%, 52%);
+@White: hsl(0, 0%, 100%);
+@Grey_100: hsl(214, 17%, 92%);
+@Grey_200: hsl(0, 0%, 81%);
+@Grey_400: hsl(224, 10%, 45%);
+@Grey_500: hsl(217, 19%, 35%);
+@Dark_blue: hsl(219, 29%, 14%);
+@Black: hsl(0, 0%, 7%);
+
+/* Setup (mobile first) */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+  font-size: 13px;
+}
+body {
+  background-color: @Grey_100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+main {
+  max-width: 82%;
+  margin: 3rem 0 6rem 0;
+}
+
+/* Fonts/sizing/etc */
+.barlow-semi-condensed-medium {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.barlow-semi-condensed-semibold {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.card_profile_name {
+  .barlow-semi-condensed-medium();
+}
+.card_profile_title {
+  .barlow-semi-condensed-medium();
+  font-size: 0.85rem;
+}
+.card_header {
+  .barlow-semi-condensed-semibold();
+  font-size: 1.5rem;
+}
+.card_quote{
+  .barlow-semi-condensed-medium();
+  line-height: 1.4;
+}
+
+/* Card styling */
+.card {
+  border-radius: 10px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 3rem 2.5rem 3rem @Grey_200;
+
+  .bg-quote { // this is only on the purple one
+    display: none;
+  }
+
+  .card_profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 2.3em;
+
+    .card_profile_image {
+      border-radius: 50%;
+      border-width: 2px;
+      border-style: solid;
+      height: 100%;
+    }
+    .card_profile_text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+  }
+  
+  &--purple { 
+    background-color: @Purple_500; 
+    .card_profile_name, .card_header {
+      color: @White; 
+    }
+    .card_profile_image {
+      border-color: @Purple_300;
+    }
+    .card_profile_title, .card_quote {
+      color: @Purple_50;
+    }
+  }
+  &--white { 
+    background-color: @White; 
+    color: @Grey_400;
+    .card_profile_name, .card_header {
+      color: @Grey_500; 
+    }
+    .card_profile_image {
+      border-color: @White;
+    }
+    .card_profile_title {
+      color: @Grey_200;
+    }
+    .card_quote {
+      color: @Grey_400;
+    }
+  }
+  &--darkblue { 
+    background-color: @Dark_blue;
+    color: @Grey_100;
+    .card_profile_image {
+      border-color: @Purple_500;
+    }
+  }
+  &--gray { 
+    background-color: @Grey_500; 
+    .card_profile_name, .card_header {
+      color: @White; 
+    }
+    .card_profile_image {
+      border-color: @Grey_400;
+    }
+    .card_profile_title {
+      color: @Grey_200;
+    }
+    .card_quote {
+      color: @Grey_100;
+    }
+  }
+}
+
+
+/* Responsiveness for bigger screens */
+@media (min-width: 1000px) {
+  main {
+    margin: 3rem 0;
+    max-width: 75%;
+  }
+  .cards_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+
+    .card:nth-child(1) {
+      grid-column: 1 / span 2;
+    }
+    .card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+    .card:nth-child(5) {
+      grid-column: 4;
+      grid-row: 1 / span 2;
+    }
+  }
+  .card {
+    position: relative;
+    margin: 0;
+
+    .card_header {
+      z-index: 1;
+      font-size: 1.6rem;
+    }
+    .bg-quote { // specifically for the purple one
+      display: inline;
+      position: absolute;
+      right: 4.5rem;
+      top: 0;
+      z-index: 0; // must be non-negative to work for some reason
+    }
+  }
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
