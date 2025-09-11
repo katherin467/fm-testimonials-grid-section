@@ -171,9 +171,9 @@ main {
   .card {
     position: relative;
     margin: 0;
+    z-index: 0; // since setting position to relative sets z-index to auto
 
     .card_header {
-      z-index: 1;
       font-size: 1.6rem;
     }
     .bg-quote { // specifically for the purple one
@@ -181,7 +181,7 @@ main {
       position: absolute;
       right: 4.5rem;
       top: 0;
-      z-index: 0; // must be non-negative to work for some reason
+      z-index: -1; 
     }
   }
 }
